@@ -15,5 +15,8 @@
   "editor.formatOnSave": true,
   "prettier.semi": false,
   "typescript.format.semicolons": "remove",
-  "javascript.format.semicolons": "remove"
+  "javascript.format.semicolons": "remove",
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "file:///Users/sudhakar/workspace/figmage/.github/workflow/deploy.yml"
+  }
 }
