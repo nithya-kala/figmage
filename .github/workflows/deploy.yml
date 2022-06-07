@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: npm i
       - name: Run next build
-        run: npm run build
+        run: HOST_ENV=ghpages npm run build
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v3
