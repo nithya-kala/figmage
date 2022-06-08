@@ -1,4 +1,5 @@
 import type { NextPage } from "next"
+import { useRouter } from "next/router"
 import {
   AppShell,
   Container,
@@ -17,7 +18,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   content: {
-    flex: 1,
+    width: 700,
     padding: 10,
     border: "1px solid #e9ecef",
     borderRadius: 6,
@@ -33,12 +34,24 @@ const useStyles = createStyles((theme) => ({
   },
 
   aside: {
-    width: 240,
+    flex: 1,
     height: "100%",
     backgroundColor: "white",
     padding: 10,
     border: "1px solid #e9ecef",
     borderRadius: 6,
+  },
+
+  svgbox: {
+    position: "relative",
+    width: "100%",
+    height: "100%",
+    overflow: "hidden",
+
+    svg: {
+      position: "absolute",
+      inset: 0,
+    },
   },
 }))
 
@@ -54,9 +67,13 @@ const mainLinks = [
 ]
 
 const Home: NextPage = () => {
+  const router = useRouter()
   const theme = useMantineTheme()
   const { classes, cx } = useStyles()
   const [opened, toggleOpened] = useBooleanToggle(false)
+
+  let svg = router.query.svg || "<b>Not found</b>"
+  if (Array.isArray(svg)) svg = svg[0]
 
   return (
     <AppShell
@@ -81,7 +98,13 @@ const Home: NextPage = () => {
       }
     >
       <Container className={classes.root}>
-        <div className={classes.content}>Hello</div>
+        <div className={classes.content}>
+          <div
+            className={classes.svgbox}
+            dangerouslySetInnerHTML={{ __html: svg }}
+          />
+        </div>
+
         <aside className={classes.aside}>
           <Text>Application sidebar</Text>
         </aside>
