@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "start": "next start",
-    "build": "next build && next export",
+    "dev": "NODE_OPTIONS='--max-http-header-size=128000' next dev",
+    "start": "NODE_OPTIONS='--max-http-header-size=128000' next start",
+    "build": "next build",
+    "export": "next export",
     "lint": "next lint"
   },
   "dependencies": {
